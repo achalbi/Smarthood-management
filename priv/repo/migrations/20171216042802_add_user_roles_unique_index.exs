@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddUserRolesUniqueIndex do
+defmodule Smarthood.Repo.Migrations.AddUserRolesUniqueIndex do
   use Ecto.Migration
 
   def change do

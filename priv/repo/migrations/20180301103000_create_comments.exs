@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreateComments do
+defmodule Smarthood.Repo.Migrations.CreateComments do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddUniqueIndexWorkStatusToKra do
+defmodule Smarthood.Repo.Migrations.AddUniqueIndexWorkStatusToKra do
   use Ecto.Migration
   @disable_ddl_transaction true
 

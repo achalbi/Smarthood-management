@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddUserEmailForWorkStatuses do
+defmodule Smarthood.Repo.Migrations.AddUserEmailForWorkStatuses do
   use Ecto.Migration
 
   def change do

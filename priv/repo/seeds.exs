@@ -5,23 +5,23 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     Standup.Repo.insert!(%Standup.SomeSchema{})
+#     Smarthood.Repo.insert!(%Smarthood.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-Standup.Repo.insert!(%Standup.Accounts.Role{
+Smarthood.Repo.insert!(%Smarthood.Accounts.Role{
     key: "admin",
     name: "Administrator"
 })
 
-Standup.Repo.insert!(%Standup.Accounts.Role{
+Smarthood.Repo.insert!(%Smarthood.Accounts.Role{
     key: "user",
     name: "Regular user"
 })
 
-Standup.Repo.insert!(%Standup.StatusTrack.WorkStatusType{
-    name: "Daily",
-    description: "This option is used to track Daily Work status",
-    period: "1",
-})
+# Smarthood.Repo.insert!(%Smarthood.StatusTrack.WorkStatusType{
+#     name: "Daily",
+#     description: "This option is used to track Daily Work status",
+#     period: 1,
+# })

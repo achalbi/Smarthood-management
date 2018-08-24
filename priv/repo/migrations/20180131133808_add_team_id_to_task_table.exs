@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddTeamIdToTaskTable do
+defmodule Smarthood.Repo.Migrations.AddTeamIdToTaskTable do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AlterUserIdWorkStatusIdOfTasksOnDelete do
+defmodule Smarthood.Repo.Migrations.AlterUserIdWorkStatusIdOfTasksOnDelete do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreateToDos do
+defmodule Smarthood.Repo.Migrations.CreateToDos do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AlterUserIdOrgIdOfUserOrgOnDelete do
+defmodule Smarthood.Repo.Migrations.AlterUserIdOrgIdOfUserOrgOnDelete do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreatePhotos do
+defmodule Smarthood.Repo.Migrations.CreatePhotos do
   use Ecto.Migration
 
   def change do

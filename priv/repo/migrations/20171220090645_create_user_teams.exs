@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreateUserTeams do
+defmodule Smarthood.Repo.Migrations.CreateUserTeams do
   use Ecto.Migration
 
   def change do

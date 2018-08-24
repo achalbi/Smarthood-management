@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreateCredentials do
+defmodule Smarthood.Repo.Migrations.CreateCredentials do
   use Ecto.Migration
 
   def change do

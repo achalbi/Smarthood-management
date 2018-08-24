@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddAvatarToCredential do
+defmodule Smarthood.Repo.Migrations.AddAvatarToCredential do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-# Standup
+# Smarthood
 
 To start your Phoenix server:
 

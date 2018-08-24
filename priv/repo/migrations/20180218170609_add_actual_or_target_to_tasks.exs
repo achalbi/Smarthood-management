@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddActualOrTargetToTasks do
+defmodule Smarthood.Repo.Migrations.AddActualOrTargetToTasks do
   use Ecto.Migration
 
   def change do

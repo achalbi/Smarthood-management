@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddSheetRowIdForWorkStatuses do
+defmodule Smarthood.Repo.Migrations.AddSheetRowIdForWorkStatuses do
   use Ecto.Migration
 
   def change do

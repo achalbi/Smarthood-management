@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreateSpreadsheets do
+defmodule Smarthood.Repo.Migrations.CreateSpreadsheets do
   use Ecto.Migration
 
   def change do

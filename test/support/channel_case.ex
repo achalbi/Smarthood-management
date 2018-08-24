@@ -1,4 +1,4 @@
-defmodule StandupWeb.ChannelCase do
+defmodule SmarthoodWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule StandupWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint StandupWeb.Endpoint
+      @endpoint SmarthoodWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Standup.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Smarthood.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Standup.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Smarthood.Repo, {:shared, self()})
     end
     :ok
   end

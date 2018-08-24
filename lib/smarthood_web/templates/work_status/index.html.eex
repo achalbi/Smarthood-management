@@ -1,0 +1,83 @@
+
+<h4> Your <%= @work_status_type.name %> Work Status</h4>
+<br>
+
+  <div class="fixed-action-btn">
+    <a id="add_ws" class="btn-floating btn-large red z-depth-5 waves-effect " href="<%= work_status_path(@conn, :new, work_status_type_id: @work_status_type.id ) %>">
+      <i class='large material-icons'>add</i>
+    </a>
+  </div>
+
+<table class="table hide">
+  <thead>
+    <tr>
+      <th></th>
+      <th>On date</th>
+      <th>Task summary</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="collection">
+<%= for work_status <- @work_statuses do %>
+    <tr class="collection-item">
+      <td></td>
+      <td><%= work_status.on_date %></td>
+      <td class="html-newline"><%= work_status.task_summary %></td>
+
+      <td class="text-right">
+        <span><%= link "Details", to: work_status_path(@conn, :show, work_status, work_status_type_id: @work_status_type.id), class: "btn btn-default btn-xs" %></span>
+        <span><%#= link "Edit", to: work_status_path(@conn, :edit, work_status), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: work_status_path(@conn, :delete, work_status, work_status_type_id: @work_status_type.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<%= if Enum.count(@work_statuses) > 0 do %>
+  <ul class="collapsible popout" data-collapsible="accordion">
+  <%= for work_status <- @work_statuses do %>
+  <li class="m-0 grey lighten-5">
+        <h5 class="collapsible-header cyan white-text"><%= work_status.on_date |>  Timex.Format.DateTime.Formatter.format!("%d %a, %B %Y", :strftime) %> </h5>
+        <div class="collapsible-body"><span class="right"><%= link "Details", to: work_status_path(@conn, :show, work_status, work_status_type_id: @work_status_type.id), class: "btn" %></span>
+          <div class="html-newline hide"><b><%= Map.get(Smarthood.StatusTrack.WorkStatus.working_at_map , work_status.status_type, "Working From Office") %></b></div>
+          <div class="html-newline hide"><%= work_status.notes %></div>
+          <div class="html-newline"><%= work_status.task_summary %></div>
+        </div>
+  </li>
+  <% end %>
+  </ul>
+<% else %>
+  <div class="card green lighten-5" role="alert">
+    <div class="card-content green-text">
+      <h6 class="center-align"> No Work Status created yet! </h6>
+    </div>
+  </div>
+
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target" data-activates="add_ws">
+    <div class="tap-target-content white-text">
+      <h5>Create Work status</h5>
+      <p>This creates your daily status for the organization.
+          You can create individual tasks under it.</p>
+    </div>
+  </div>
+
+  <script>
+  $(function(){
+    $('.tap-target').tapTarget('open');
+  });
+  </script>
+
+<% end %>
+
+<script>
+  $(document).ready(function(){
+    $('#add_ws').addClass('animated bounce');
+  });
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible('open', 0);
+  });
+</script>

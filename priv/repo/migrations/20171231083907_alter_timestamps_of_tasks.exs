@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AlterTimestampsOfTasks do
+defmodule Smarthood.Repo.Migrations.AlterTimestampsOfTasks do
   use Ecto.Migration
 
   def change do

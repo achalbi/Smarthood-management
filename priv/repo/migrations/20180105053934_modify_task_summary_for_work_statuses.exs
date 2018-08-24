@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.ModifyTaskSummaryForWorkStatuses do
+defmodule Smarthood.Repo.Migrations.ModifyTaskSummaryForWorkStatuses do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.CreateKeyResultAreas do
+defmodule Smarthood.Repo.Migrations.CreateKeyResultAreas do
   use Ecto.Migration
 
   def change do

@@ -5,18 +5,18 @@
 # is restricted to this project.
 use Mix.Config
 
-config :standup, env: Mix.env
+config :smarthood, env: Mix.env
 
 # General application configuration
-config :standup,
-  ecto_repos: [Standup.Repo]
+config :smarthood,
+  ecto_repos: [Smarthood.Repo]
 
 # Configures the endpoint
-config :standup, StandupWeb.Endpoint,
+config :smarthood, SmarthoodWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "gmQMLdAyuHKxYT18m88A+Lg11C0UDWO+Z0bjqHoLeP97I4Cl7qufqllNzOhHnMLH",
-  render_errors: [view: StandupWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Standup.PubSub,
+  render_errors: [view: SmarthoodWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Smarthood.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -45,11 +45,11 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth ,
   redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
   
 # Guardian configuration
-config :standup, Standup.Guardian,
-  issuer: "standup",
+config :smarthood, Smarthood.Guardian,
+  issuer: "smarthood",
   secret_key: System.get_env("GUARDIAN_SECRET") || "j6LyXGbyn1R15T9UzgWUmtlAGxRpnM6eMdSdmFR5SS3mpxpsPKPBrUfjnuynICgj",
-  error_handler: Standup.AuthErrorHandler
-  #serializer: Standup.GuardianSerializer
+  error_handler: Smarthood.AuthErrorHandler
+  #serializer: Smarthood.GuardianSerializer
 
 config :cloudex,
   api_key: System.get_env("CLOUDINARY_API_KEY"),
@@ -64,7 +64,7 @@ config :elixir_google_spreadsheets, :client,
   max_interval: :timer.minutes(3),
   interval: 3000
 
-config :sphinx, :repo, Standup.Repo
+config :sphinx, :repo, Smarthood.Repo
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -1,4 +1,4 @@
-defmodule Standup.Repo.Migrations.AddProviderAndTokenToUser do
+defmodule Smarthood.Repo.Migrations.AddProviderAndTokenToUser do
   use Ecto.Migration
 
   def change do
