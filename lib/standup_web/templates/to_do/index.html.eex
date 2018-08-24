@@ -1,0 +1,216 @@
+  <div class="row hide">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#test1">Your</a></li>
+        <li class="tab col s3"><a class="" href="#test2">Your Team</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= render "form.html", Map.put(assigns, :action, organization_to_do_path(@conn, :create, @organization_id)) %>
+  </div>
+
+<div class="row">
+
+  <div class="col s12 m9 ">
+    <div class="card ">
+      <div class="card-content cyan darken-1 white-text" style="position: relative">
+        <span class="card-title m-b-0">TO-DO ITEMS</span>
+      </div>
+      <div class="card-content grey lighten-5">
+      <%= if Enum.count(@to_dos) > 0 do %>
+      <div class="collection">
+        <%= for to_do <- @to_dos do %>
+        <a class="collection-item" href="<%= organization_to_do_path(@conn, :show, to_do.organization, to_do) %>">
+          <div class="collection-title">
+            <%= to_do.item_number %> <%= to_do.title %>
+            <span class='new badge' data-badge-caption="<%= to_do.status %>"></span>
+          </div>
+          <div class="hide grey lighten-5">
+              <div class="right">
+                <a class='dropdown-button btn ' style="margin-top: 15px; " href='#' data-activates='dropdown_to_do_<%= to_do.id %>'>Action</a>
+                  <ul id='dropdown_to_do_<%= to_do.id %>' class='dropdown-content'>
+                    <li><%= link "Show", to: organization_to_do_path(@conn, :show, to_do.organization, to_do), class: "" %></li>
+                    <li><%= link "Export to Task", to: export_to_do_to_tasks_path(@conn, :export_to_do_to_tasks, to_do_id: to_do.id), class: "" %></li>
+                    <li><%= link "Edit", to: organization_to_do_path(@conn, :edit, to_do.organization, to_do), class: "" %></li>
+                    <li><%= link "Delete", to: organization_to_do_path(@conn, :delete, to_do.organization, to_do), method: :delete, data: [confirm: "Are you sure?"], class: "" %></li>
+                  </ul>
+              </div>
+
+            <span class="html-newline"><%= to_do.description %></span>
+              <p>
+                <strong>Start date:</strong>
+                <%= NaiveDateTime.to_date(to_do.start_date) %>
+              </p>
+
+              <p>
+                <strong>End date:</strong>
+                <%= NaiveDateTime.to_date(to_do.end_date) %>
+              </p>
+
+              <p>
+                <strong>Ownership:</strong>
+                <%= to_do.ownership %>
+              </p>
+
+              <p>
+                <strong>Privacy:</strong>
+                <%= to_do.list_type %>
+              </p>
+
+
+          </div>
+        </a>
+        <% end %>
+      </div>
+        <% end %>
+      <%= if Enum.count(@yesterday_to_dos) > 0 do %>
+      <h5 class="m-10 p-10"> Yesterday<h5>
+      <div class="collection">
+        <%= for to_do <- @yesterday_to_dos do %>
+        <a class="collection-item" href="<%= organization_to_do_path(@conn, :show, to_do.organization, to_do) %>">
+          <div class="collection-title">
+            <%= to_do.item_number %> <%= to_do.title %>
+            <span class='new badge' data-badge-caption="<%= to_do.status %>"></span>
+          </div>
+          <div class="hide grey lighten-5">
+              <div class="right">
+                <a class='dropdown-button btn ' style="margin-top: 15px; " href='#' data-activates='dropdown_to_do_<%= to_do.id %>'>Action</a>
+                  <ul id='dropdown_to_do_<%= to_do.id %>' class='dropdown-content'>
+                    <li><%= link "Show", to: organization_to_do_path(@conn, :show, to_do.organization, to_do), class: "" %></li>
+                    <li><%= link "Export to Task", to: export_to_do_to_tasks_path(@conn, :export_to_do_to_tasks, to_do_id: to_do.id), class: "" %></li>
+                    <li><%= link "Edit", to: organization_to_do_path(@conn, :edit, to_do.organization, to_do), class: "" %></li>
+                    <li><%= link "Delete", to: organization_to_do_path(@conn, :delete, to_do.organization, to_do), method: :delete, data: [confirm: "Are you sure?"], class: "" %></li>
+                  </ul>
+              </div>
+
+            <span class="html-newline"><%= to_do.description %></span>
+              <p>
+                <strong>Start date:</strong>
+                <%= NaiveDateTime.to_date(to_do.start_date) %>
+              </p>
+
+              <p>
+                <strong>End date:</strong>
+                <%= NaiveDateTime.to_date(to_do.end_date) %>
+              </p>
+
+              <p>
+                <strong>Ownership:</strong>
+                <%= to_do.ownership %>
+              </p>
+
+              <p>
+                <strong>Privacy:</strong>
+                <%= to_do.list_type %>
+              </p>
+
+
+          </div>
+        </a>
+        <% end %>
+      </div>
+        <% end %>
+        <%= if (Enum.count(@to_dos) < 1 && Enum.count(@yesterday_to_dos) < 1) do %>
+          <p class="center"> No results found </p>
+
+                    <!-- Tap Target Structure -->
+          <div class="tap-target" data-activates="add_ws">
+            <div class="tap-target-content white-text">
+              <h5>Add To-Dos</h5>
+              <p>Add your daily to-dos.
+                  You can make it private and also export it as tasks.</p>
+            </div>
+          </div>
+
+          <script>
+          $(function(){
+            $('.tap-target').tapTarget('open');
+          });
+          </script>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+
+    <div class="col s12 m3">
+    <div class="card ">
+      <div class="card-content cyan darken-1 white-text" style="position: relative">
+        <span class="card-title m-b-0">FILTER LIST</span>
+      </div>
+      <div class="card-content grey lighten-5">
+      <%= form_for @conn, organization_to_do_path(@conn, :index, @organization_id), [method: "get"],fn f -> %>
+
+        <div class="input-field">
+          <label class="active">Day</label>
+          <%= select(f, :day, Standup.ToDos.ToDo.day, prompt: "All", selected: @day, id: "filter_day") %>
+        </div>
+        <br>
+        <div class="input-field">
+          <label class="active">Privacy</label>
+          <%= select(f, :privacy, Standup.ToDos.ToDo.privacy, prompt: "All", selected: @privacy, id: "filter_privacy") %>
+        </div>
+        <br>
+        <div class="input-field">
+          <label class="active">Status</label>
+          <%= select(f, :status, Standup.ToDos.ToDo.status_type, prompt: "All", selected: @status, id: "filter_status") %>
+        </div>
+      <div class="">
+          <%= submit "Filter", class: "btn center-block" %>
+            <%= link "Submit", to: organization_to_do_path(@conn, :index, @organization_id), class: "btn center-block hide", id: "filter_submit" %>
+      </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed-action-btn">
+  <a id="add_ws" class="btn-floating btn-large red z-depth-5 waves-effect waves-light animated bounce" href="<%= organization_to_do_path(@conn, :new, @organization_id) %>">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  
+
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15, // Creates a dropdown of 15 years to control year,
+      today: 'Today',
+      clear: 'Clear',
+      closeOnClear: false,
+      close: 'Ok',
+      formatSubmit: 'yyyy-mm-dd',
+      hiddenName: true,
+      closeOnSelect: true // Close upon selecting a date,
+    });
+
+/*
+custom filter append
+    var url = $('#filter_submit').attr('href')
+     str = "?day="+ $("#filter_day").val() + "&privacy=" + $("#filter_privacy").val() + "&status=" + $("#filter_status").val();
+      $('#filter_submit').attr('href',function(i,url) {
+        return url + str;
+      });
+
+    $('select').change(function(){
+      str = "?day="+ $("#filter_day").val() + "&privacy=" + $("#filter_privacy").val() + "&status=" + $("#filter_status").val();
+      $('#filter_submit').attr('href',function(i,url_str) {
+        return url + str;
+      });
+    });
+*/
+
+  });
+
+  $(document).ready(function(){
+  //  $('.collapsible').collapsible('open', 0);
+    $('#add_ws').addClass('animated bounce');
+  });
+  
+</script>

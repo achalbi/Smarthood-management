@@ -1,0 +1,261 @@
+<div class="card-panel grey lighten-5"> 
+<div class="valign-wrapper right">
+  <%= link "Edit", to: organization_path(@conn, :edit, @organization), class: "btn ", style: "margin-right: 5px;" %>
+  <%= link "Delete", to: organization_path(@conn, :delete, @organization), method: :delete, data: [confirm: "Are you sure?"], class: "btn" %>
+</div>
+
+<h4>Organization:  <%= @organization.name %></h4>
+<%= @organization.description %>
+</div>
+
+<div class="row m-0">
+<div class="col s12 m6">
+<div class="card ">
+<div class="card-content cyan darken-1 white-text" style="position: relative">
+  <span class="card-title m-b-0">Self signup email address domains</span>
+</div>
+<div class="card-content grey lighten-5">
+<table class="bordered highlight">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th class="right">
+      <span class='<%= unless is_current_user_moderator?(@conn), do: "hide" %>'><%= link "New Domain", to: organization_domain_path(@conn, :new, @organization), class: "btn right light" %></span>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= if Enum.count(@organization.domains) == 0 do %>
+  <tr>
+      <td colspan="2">
+        <h6 class="center">No domains created yet!</h6>
+      </td>
+  </tr>
+  <% end %>
+<%= for domain <- @organization.domains do %>
+    <tr>
+      <td><%= domain.name %></td>
+      <td>
+        <div class="right">
+          <a class='dropdown-button btn' href='#' data-activates='dropdown_domain_<%= domain.id %>'>Action</a>
+          <ul id='dropdown_domain_<%= domain.id %>' class='dropdown-content'>
+            <li><%= link "Show", to: organization_domain_path(@conn, :show, @organization, domain), class: "" %></li>
+            <li><%= link "Edit", to: organization_domain_path(@conn, :edit, @organization, domain), class: "" %></li>
+            <li><%= link "Delete", to: organization_domain_path(@conn, :delete, @organization, domain), method: :delete, data: [confirm: "Are you sure?"], class: "" %></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="col s12 m6"> 
+<div class="card ">
+<div class="card-content cyan darken-1 white-text" style="position: relative">
+  <span class="card-title m-b-0">Teams</span>
+</div>
+<div class="card-content grey lighten-5">
+<table class="bordered highlight">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th class="right">
+        <span><%= link "Create", to: team_path(@conn, :new, organization_id: @organization.id ), class: "btn right light" %></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+<%= if Enum.count(@teams) == 0 do %>
+ <tr>
+    <td colspan="2">
+      <h6 class="center">No teams created yet!</h6>
+    </td>
+ </tr>
+<% end %>
+
+<%= for team <- @teams do %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.description %></td>
+      <td class="right">
+        <a class='dropdown-button btn' href='#' data-activates='dropdown_team_<%= team.id %>'>Action</a>
+        <ul id='dropdown_team_<%= team.id %>' class='dropdown-content'>
+          <li><a href="<%= team_path(@conn, :show, team) %>" class="">Show</a></li>
+          <li><a href="<%= team_path(@conn, :edit, team) %>" class="">Edit</a></li>
+          <li><%= link to: team_path(@conn, :delete, team), method: :delete, data: [confirm: "Are you sure?"], class: "" do %>
+                Delete
+              <% end %>
+          </li>
+        </ul>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="row m-0">
+<div class="col s12 m6">
+<div class="card ">
+<div class="card-content cyan darken-1 white-text" style="position: relative">
+  <span class="card-title m-b-0">Add Work Status Type</span>
+</div>
+<div class="card-content grey lighten-5">
+<table class="bordered highlight">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th class="right">
+      <span><%= link "New Work status type", to: organization_work_status_type_path(@conn, :new, @organization), class: "btn right light" %></span>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= if Enum.count(@organization.work_status_types) == 0 do %>
+  <tr>
+      <td colspan="2">
+        <h6 class="center">No work status type created yet!</h6>
+      </td>
+  </tr>
+  <% end %>
+<%= for work_status_type <- @organization.work_status_types do %>
+    <tr>
+      <td><%= work_status_type.name %></td>
+      <td>
+        <div class="right">
+          <a class='dropdown-button btn' href='#' data-activates='dropdown_work_status_type_<%= work_status_type.id %>'>Action</a>
+          <ul id='dropdown_work_status_type_<%= work_status_type.id %>' class='dropdown-content'>
+            <li><%= link "Show", to: organization_work_status_type_path(@conn, :show, @organization, work_status_type), class: "" %></li>
+            <li><%= link "Edit", to: organization_work_status_type_path(@conn, :edit, @organization, work_status_type), class: "" %></li>
+            <li><%= link "Delete", to: organization_work_status_type_path(@conn, :delete, @organization, work_status_type), method: :delete, data: [confirm: "Are you sure?"], class: "" %></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="col s12 m6">
+<div class="card ">
+<div class="card-content cyan darken-1 white-text" style="position: relative">
+  <span class="card-title m-b-0">Spreadsheet</span>
+</div>
+<div class="card-content grey lighten-5">
+<table class="bordered highlight">
+  <thead>
+    <tr>
+      <th>Spreadsheet status</th>
+
+      <th class="right">
+      <%= unless @organization.spreadsheet do %>
+        <span><%= link "New Spreadsheet", to: organization_spreadsheet_path(@conn, :new, @organization), class: "btn right light" %></span>
+      <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= unless @organization.spreadsheet do %>
+  <tr>
+      <td colspan="2">
+        <h6 class="center">No Spreadsheet added yet!</h6>
+      </td>
+  </tr>
+  <% else %>
+    <tr>
+      <td><%= @organization.spreadsheet.status %></td>
+      <td>
+        <div class="right">
+          <a class='dropdown-button btn' href='#' data-activates='dropdown_spreadsheet_<%= @organization.spreadsheet.id %>'>Action</a>
+          <ul id='dropdown_spreadsheet_<%= @organization.spreadsheet.id %>' class='dropdown-content'>
+            <li><%= link "Show", to: organization_spreadsheet_path(@conn, :show, @organization, @organization.spreadsheet), class: "" %></li>
+            <li><%= link "Edit", to: organization_spreadsheet_path(@conn, :edit, @organization, @organization.spreadsheet), class: "" %></li>
+            <li><%= link "Delete", to: organization_spreadsheet_path(@conn, :delete, @organization, @organization.spreadsheet), method: :delete, data: [confirm: "Are you sure?"], class: "" %></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2>
+         <strong><p>Please share your Google speadsheet document with the below email for the App to push workstatus updates.</p></strong>
+        <div class="chip " style="white-space:nowrap;">
+          standup@standup-129.iam.gserviceaccount.com
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="row m-0">
+<div class="col s12">
+<div class="card ">
+<div class="card-content cyan darken-1 white-text" style="position: relative">
+  <span class="card-title m-b-0">Users</span>
+</div>
+<div class="card-content grey lighten-5">
+<table class=" bordered highlight ">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <%# <th>Username</th> %>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @organization.users do %>
+    <tr>
+      <td>
+        <div class="m-b-0">
+          <div class="left avatar">
+            <%= unless is_nil(user.photo) do %>
+              <%= cl_image_tag(user.photo.public_id, class: "circle responsive-img", transforms: %{width: 50, height: 50, sign_url: true, quality: 80, crop: :fill, gravity: :face}) %>
+            <% end %> 
+          </div>
+          <div class="left" style="margin: 15px 10px; ">
+            <b class="cyan-text text-darken-4"> <%= user.firstname %>  <%= user.lastname %></b>
+          <span class='new badge <%= if Enum.any?(@moderators, fn(u) -> u.id == user.id end), do: "pink", else: "cyan" %>' data-badge-caption="">
+            <%= if Enum.any?(@moderators, fn(u) -> u.id == user.id end), do: "Moderator", else: "Member" %>
+          </span>
+          </div>
+        </div>
+      </td>
+      <td class="right">
+        <a class='dropdown-button btn ' style="margin-top: 15px; " href='#' data-activates='dropdown_user_<%= user.id %>'>Action</a>
+          <ul id='dropdown_user_<%= user.id %>' class='dropdown-content'>
+            <li><%= link "Show", to: user_path(@conn, :show, user), class: "" %></li>
+            <li><%= link "Edit", to: user_path(@conn, :edit, user), class: "" %></li>
+            <li><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "" %></li>
+          </ul>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<br>
+<span><%#= link "Back", to: organization_path(@conn, :index), class: "btn" %></span>

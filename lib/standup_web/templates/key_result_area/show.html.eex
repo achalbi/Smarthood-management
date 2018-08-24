@@ -1,0 +1,46 @@
+<h4>Show Key result area</h4>
+
+<ul>
+
+<%= if @key_result_area.accountability do %>
+  <li>
+    <strong>Accountability:</strong>
+    <p class="html-newline"><%= @key_result_area.accountability %></p>
+  </li>
+<% end %>
+  
+<%= if @key_result_area.ownership do %>
+  <li>
+    <strong>Ownership:</strong>
+    <p class="html-newline"><%= @key_result_area.ownership %></p>
+  </li>
+<% end %>
+
+  <li>
+    <strong>Productivity:</strong>
+    <%= @key_result_area.productivity %> %
+  </li>
+  
+<%= if @key_result_area.skill do %>
+  <li>
+    <strong>Skill:</strong>
+    <%= @key_result_area.skill %>
+  </li>
+<% end %>
+
+  <li>
+    <strong>Effective communication:</strong>
+    <%= @key_result_area.effective_communication %>
+  </li>
+  
+<%= if @key_result_area.impediments do %>
+  <li>
+    <strong>Impediments:</strong>
+    <%= @key_result_area.impediments %>
+  </li>
+<% end %>
+
+</ul>
+
+<span><%= link "Edit", to: work_status_key_result_area_path(@conn, :edit, @key_result_area.work_status, @key_result_area), class: "btn" %></span>
+<span><a href="<%= work_status_path(@conn, :show, @key_result_area.work_status) %>" class="waves-effect waves-light btn">Back</a></span>

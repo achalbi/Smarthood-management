@@ -1,0 +1,37 @@
+<div class="row"></div>
+<div class="row">
+  <div class="card-panel hoverable">
+    <h3 class="center teal-text">Sign in </h3>
+    <div class="center">
+      <%= form_tag @callback_url, method: "post", class: "login", novalidate: true do %>
+      <div class="row">
+        <div class="input-field col m8 s12 offset-m2">
+          <label for="email">Email</label>
+          <input type="email" name="email" value="
+            <%= @conn.params["email"] %>" required class="validate" />
+        </div>
+      </div>
+      <div class="row">
+          <div class="input-field col m8 s12 offset-m2">
+            <label for="password">Password</label>
+            <input type="password" name="password" required class="validate" />
+          </div>
+      </div>
+      <div class="row">
+          <div class="">
+            <button type="submit" class="btn waves-effect waves-light cyan darken-1">Sign in</button>
+            <a href="/users/new" class="btn waves-effect waves-light cyan darken-1">Sign up</a>
+          </div>
+      </div>
+      <% end %>
+    </div>
+    <h5 class="center cyan-text">
+      <smal >or</small>
+    </h5>
+    <div class="center">
+      <a class="btn-large btn waves-effect waves-light teal z-depth-4" href="/auth/google">
+        <i class="material-icons small"></i>Sign in with Google  
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<h4>New Key Result Area</h4>
+<br>
+<%= render "form.html", Map.put(assigns, :action, work_status_key_result_area_path(@conn, :create, @work_status)) %>

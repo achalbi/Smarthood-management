@@ -1,0 +1,76 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="card red lighten-5" role="alert">
+      <div class="card-content red-text">
+        <p> Please check the errors below.</p>
+      </div>
+    </div>
+  <% end %>
+
+  <%= if Map.has_key?(@changeset.changes, :accountability) do %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= label f, :accountability, class: "active" %>
+      <%= textarea f, :accountability, class: "hide" %>
+        <%= if @changeset.changes.accountability do %>
+          <p class="html-newline"><%= @changeset.changes.accountability %></p>
+        <% else %>
+          <p class="html-newline"><%= @changeset.data.accountability %></p>
+        <% end %>
+      <%= error_tag f, :accountability %>
+    </div>
+  </div>
+  <% end %>
+  <%= hidden_input f, :work_status_id %>
+
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= label f, :ownership %>
+      <%= textarea f, :ownership, class: "materialize-textarea" %>
+      <%= error_tag f, :ownership %>
+    </div>
+
+    <div class="input-field col s12 m6">
+      <%= label f, :skill %>
+      <%= textarea f, :skill, class: "materialize-textarea" %>
+      <%= error_tag f, :skill %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6">
+      <%= label f, :productivity, "Productivity (%)" %>
+      <%= number_input f, :productivity, step: "any" %>
+      <%= error_tag f, :productivity %>
+    </div>
+
+    <div class="input-field col s6 m3">
+      <label>Effective Communication</label>
+    </div>
+    <div class="col s6 m3">
+      <p>
+        <%= radio_button f, :effective_communication, true, class: "with-gap" %>
+        <label for="key_result_area_effective_communication_true">Yes</label>
+      </p>
+      <p>
+        <%= radio_button f, :effective_communication, false, class: "with-gap" %>
+        <label for="key_result_area_effective_communication_false">No</label>
+      </p>
+ 
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= label f, :impediments %>
+      <%= textarea f, :impediments, class: "materialize-textarea" %>
+      <%= error_tag f, :impediments %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <%= submit "Submit", class: "btn waves-effect waves-light" %>
+      <a href="javascript:history.back()" class="waves-effect waves-light btn">Back</a>
+    </div>
+  </div>
+<% end %>

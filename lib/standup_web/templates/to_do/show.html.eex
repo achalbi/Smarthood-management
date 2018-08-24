@@ -1,0 +1,48 @@
+<h4>Show To do</h4>
+
+<ul>
+
+  <li>
+    <strong>Item number:</strong>
+    <%= @to_do.item_number %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @to_do.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @to_do.description %>
+  </li>
+
+  <li>
+    <strong>Start date:</strong>
+    <%= NaiveDateTime.to_date(@to_do.start_date) %>
+  </li>
+
+  <li>
+    <strong>End date:</strong>
+    <%= NaiveDateTime.to_date(@to_do.end_date) %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @to_do.status %>
+  </li>
+
+  <li>
+    <strong>Ownership:</strong>
+    <%= @to_do.ownership %>
+  </li>
+
+  <li>
+    <strong>Privacy:</strong>
+    <%= @to_do.list_type %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: organization_to_do_path(@conn, :edit, @to_do.organization, @to_do), class: "btn" %></span>
+<span><%= link "Back", to: organization_to_do_path(@conn, :index, @to_do.organization), class: "btn" %></span>

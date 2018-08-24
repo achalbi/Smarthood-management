@@ -1,0 +1,71 @@
+
+  <div class="row">
+    <div class="input-field col m6 s12">
+      <%= unless is_nil(@user.photo) do %>
+        <%= cl_image_tag(@user.photo.public_id, class: " materialboxed responsive-img", transforms: %{width: 100, height: 100, sign_url: true, quality: 80, crop: :fill, gravity: :face}) %>
+      <% end %> 
+    </div>
+  </div>
+
+<%= form_for @changeset, @action, [multipart: true], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p><%= error_string_from_changeset(@changeset) %></p>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="input-field col m6 s12">
+      <%= label f, :firstname %>
+      <%= text_input f, :firstname, class: "validate", required: true %>
+      <%= error_tag f, :firstname %>
+    </div>
+
+    <div class="input-field col m6 s12">
+      <%= label f, :lastname %>
+      <%= text_input f, :lastname, class: "validate", required: true %>
+      <%= error_tag f, :lastname %>
+    </div>
+  </div>
+
+  <%= inputs_for f, :credential, fn cf -> %>
+    <div class="input-field col s12">
+      <%= label cf, :email %>
+      <%= text_input cf, :email, class: "validate", required: true %>
+      <%= error_tag cf, :email %>
+    </div>
+
+    <div class="row">
+      <div class="input-field col m6 s12">
+        <%= label cf, :password %>
+        <%= password_input cf, :password, class: "validate" %>
+        <%= error_tag cf, :password %>
+      </div>
+
+      <div class="input-field col m6 s12">
+        <%= label cf, :password_confirmation %>
+        <%= password_input cf, :password_confirmation, class: "validate" %>
+        <%= error_tag cf, :password_confirmation %>
+      </div>
+    </div>
+    <%= hidden_input cf, :provider, value: 'identity' %>
+  <% end %>
+  <%= inputs_for f, :photo, fn p -> %>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>upload picture</span>
+        <%= file_input p, :image %>
+        <%= error_tag p, :image %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "waves-effect waves-light btn orange" %>
+    <a href="javascript:history.back()" class="waves-effect waves-light btn">Back</a>
+    <a href="/auth/identity" class="waves-effect waves-light btn right hide-on-large-only">Sign in</a>
+  </div>
+<% end %>

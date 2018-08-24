@@ -1,0 +1,38 @@
+<h4>Show User</h4>
+
+<ul>
+
+  <li>
+
+  <div class="row">
+    <div class="input-field col m6 s12">
+      <%= unless is_nil(@user.photo) do %>
+        <%= cl_image_tag(@user.photo.public_id, class: " materialboxed responsive-img", transforms: %{width: 100, height: 100, sign_url: true, quality: 80, crop: :fill, gravity: :face}) %>
+      <% end %> 
+    </div>
+  </div>
+  </li>
+
+  <li>
+    <strong>Firstname:</strong>
+    <%= @user.firstname %>
+  </li>
+
+  <li>
+    <strong>Lastname:</strong>
+    <%= @user.lastname %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.credential.email %>
+  </li>
+
+  <li>
+    <strong><%= ngettext("Role", "Roles", Enum.count(@user.roles)) %>:</strong>
+    <%= Enum.map_join(@user.roles, " , ", &(&1.name)) %>
+  </li>
+</ul>
+
+<span><%= link "Edit", to: user_path(@conn, :edit, @user), class: "btn" %></span>
+<a href="javascript:history.back()" class="waves-effect waves-light btn">Back</a>
