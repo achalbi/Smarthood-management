@@ -1,7 +1,7 @@
 defmodule Smarthood.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Smarthood.Accounts.{User, Credential, Role, UserRole}
+  alias Smarthood.Accounts.{User, Credential, Role, UserRole, ContactInfo}
   alias Smarthood.Organizations.{Team, UserTeam, Organization, UserOrganization}
   alias Smarthood.Galleries.Photo
   alias Smarthood.StatusTrack.WorkStatus
@@ -13,6 +13,7 @@ defmodule Smarthood.Accounts.User do
     field :avatar, :string
     belongs_to :photo, Photo, on_replace: :nilify 
     has_one :credential, Credential
+    has_one :contact_info, ContactInfo
     many_to_many :roles, Role, join_through: UserRole
     many_to_many :organizations, Organization, join_through: UserOrganization  
     many_to_many :teams, Team, join_through: UserTeam 
@@ -25,6 +26,7 @@ defmodule Smarthood.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:firstname, :lastname, :username, :avatar])
+    |> cast_assoc(:contact_info)
     |> validate_required([])
   #  |> unique_constraint(:username)
   end

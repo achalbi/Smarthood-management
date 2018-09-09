@@ -87,7 +87,7 @@
       </div>
     </li>
     <li><a class="waves-effect waves-teal" href="/"><i class="material-icons">dashboard</i>Dashboard</a></li>
-    <li class="">
+    <li class="hide">
       <ul class="collapsible collapsible-accordion">
         <li>
         <a class="collapsible-header waves-effect waves-teal" style="padding: 0 30px;"><i class="material-icons">list</i>To-Do</a>
@@ -103,10 +103,11 @@
         </li>
       </ul>
     </li>
-    <li><a class="waves-effect waves-teal" href="/organizations"><i class="material-icons">business</i>Organization</a></li>
+    <li><a class="waves-effect waves-teal" href="/communities"><i class="material-icons">business</i>Communities</a></li>
+    <li><a class="waves-effect waves-teal" href="/users"><i class="material-icons">people</i>Users</a></li>
       
     <%= if length(@conn.assigns.current_user.organizations) > 0 do %>
-    <li class="no-padding">
+    <li class="no-padding hide">
       <ul class="collapsible collapsible-accordion">
         <li>
           <a class="collapsible-header waves-effect waves-teal" style="padding: 0 32px;"><i class="material-icons">event_note</i>Work Status</a>

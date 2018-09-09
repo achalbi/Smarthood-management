@@ -1,4 +1,4 @@
-<h2>Edit Organization</h2>
+<h2>Edit Community</h2>
 
 <%= render "form.html", Map.put(assigns, :action, organization_path(@conn, :update, @organization)) %>
 

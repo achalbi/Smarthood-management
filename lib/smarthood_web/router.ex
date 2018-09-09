@@ -62,11 +62,19 @@ defmodule SmarthoodWeb.Router do
     resources("/users", UserController, except: [:new, :create])
     resources("/roles", RoleController)
 
+    # resources "/organizations", OrganizationController do
     resources "/organizations", OrganizationController do
       resources("/domains", DomainController)
       resources("/work_status_types", WorkStatusTypeController)
       resources("/spreadsheets", SpreadsheetController)
       resources("/to_dos", ToDoController)
+    end
+    
+    resources "/communities", CommunityController do
+      resources("/users", UserController, only: [:join]) do
+        get("/join", UserController, :add_user_to_community, as: :join)
+        get("/unjoin", UserController, :remove_user_from_community, as: :unjoin)
+      end
     end
 
     resources "/to_dos", ToDoController, only: [], as: :to_do do

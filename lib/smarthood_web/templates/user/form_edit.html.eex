@@ -34,8 +34,8 @@
       <%= text_input cf, :email, class: "validate", required: true %>
       <%= error_tag cf, :email %>
     </div>
-
-    <div class="row">
+    <a href="javascript:document.getElementById('password_div').classList.toggle('hide')" class="waves-effect waves-light btn">Change Password</a>
+    <div class="row hide" id="password_div">
       <div class="input-field col m6 s12">
         <%= label cf, :password %>
         <%= password_input cf, :password, class: "validate" %>
@@ -49,6 +49,51 @@
       </div>
     </div>
     <%= hidden_input cf, :provider, value: 'identity' %>
+  <% end %>
+
+  <%= inputs_for f, :contact_info, fn ci -> %>
+    <div class="row">
+      <div class="input-field col m6 s12">
+        <%= label ci, :email1, "Primary Email" %>
+        <%= text_input ci, :email1, class: "validate", required: true %>
+        <%= error_tag ci, :email1 %>
+      </div>
+
+      <div class="input-field col m6 s12">
+        <%= label ci, :email2, "Secondary Email" %>
+        <%= text_input ci, :email2 %>
+        <%= error_tag ci, :email2 %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col m6 s12">
+        <%= label ci, :phone1, "Primary Mobile" %>
+        <%= text_input ci, :phone1, class: "validate", required: true %>
+        <%= error_tag ci, :phone1 %>
+      </div>
+
+      <div class="input-field col m6 s12">
+        <%= label ci, :phone2, "Secondary Mobile" %>
+        <%= text_input ci, :phone2 %>
+        <%= error_tag ci, :phone2 %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col m6 s12">
+        <%= label ci, :address1, "Primary Address" %>
+        <%= textarea ci, :address1, class: "validate materialize-textarea", required: true %>
+        <%= error_tag ci, :address1 %>
+      </div>
+
+      <div class="input-field col m6 s12">
+        <%= label ci, :address2, "Secondary Address" %>
+        <%= textarea ci, :address2, class: "materialize-textarea" %>
+        <%= error_tag ci, :address2 %>
+      </div>
+    </div>
+    <%= hidden_input ci, :user_id, value: @conn.assigns.current_user.id %>
   <% end %>
   <%= inputs_for f, :photo, fn p -> %>
     <div class="file-field input-field">
@@ -64,7 +109,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= submit "Submit", class: "waves-effect waves-light btn orange" %>
+    <%= submit "Submit", class: "waves-effect waves-light btn" %>
     <a href="javascript:history.back()" class="waves-effect waves-light btn">Back</a>
     <a href="/auth/identity" class="waves-effect waves-light btn right hide-on-large-only">Sign in</a>
   </div>

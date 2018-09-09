@@ -6,6 +6,7 @@ defmodule SmarthoodWeb.UserController do
   alias Smarthood.Accounts
   alias Smarthood.Accounts.User
   alias Smarthood.Guardian
+  alias Smarthood.Communities
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -60,5 +61,16 @@ defmodule SmarthoodWeb.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
+
+  def add_user_to_community(conn, %{"community_id" => community_id, "user_id" => user_id}) do
+    Communities.add_users_to_community(community_id, user_id, false)
+    redirect conn, to: "/communities"
+  end
+
+  def remove_user_from_community(conn, %{"community_id" => community_id, "user_id" => user_id}) do
+    Communities.remove_users_from_community(community_id, user_id)
+    redirect conn, to: "/communities"
+  end
+
 
 end

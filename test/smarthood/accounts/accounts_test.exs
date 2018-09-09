@@ -192,4 +192,74 @@ defmodule Smarthood.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_role(role)
     end
   end
+
+  describe "contact_infos" do
+    alias Smarthood.Accounts.ContactInfo
+
+    @valid_attrs %{address1: "some address1", address2: "some address2", email1: "some email1", email2: "some email2", phone1: "some phone1", phone2: "some phone2"}
+    @update_attrs %{address1: "some updated address1", address2: "some updated address2", email1: "some updated email1", email2: "some updated email2", phone1: "some updated phone1", phone2: "some updated phone2"}
+    @invalid_attrs %{address1: nil, address2: nil, email1: nil, email2: nil, phone1: nil, phone2: nil}
+
+    def contact_info_fixture(attrs \\ %{}) do
+      {:ok, contact_info} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Accounts.create_contact_info()
+
+      contact_info
+    end
+
+    test "list_contact_infos/0 returns all contact_infos" do
+      contact_info = contact_info_fixture()
+      assert Accounts.list_contact_infos() == [contact_info]
+    end
+
+    test "get_contact_info!/1 returns the contact_info with given id" do
+      contact_info = contact_info_fixture()
+      assert Accounts.get_contact_info!(contact_info.id) == contact_info
+    end
+
+    test "create_contact_info/1 with valid data creates a contact_info" do
+      assert {:ok, %ContactInfo{} = contact_info} = Accounts.create_contact_info(@valid_attrs)
+      assert contact_info.address1 == "some address1"
+      assert contact_info.address2 == "some address2"
+      assert contact_info.email1 == "some email1"
+      assert contact_info.email2 == "some email2"
+      assert contact_info.phone1 == "some phone1"
+      assert contact_info.phone2 == "some phone2"
+    end
+
+    test "create_contact_info/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_contact_info(@invalid_attrs)
+    end
+
+    test "update_contact_info/2 with valid data updates the contact_info" do
+      contact_info = contact_info_fixture()
+      assert {:ok, contact_info} = Accounts.update_contact_info(contact_info, @update_attrs)
+      assert %ContactInfo{} = contact_info
+      assert contact_info.address1 == "some updated address1"
+      assert contact_info.address2 == "some updated address2"
+      assert contact_info.email1 == "some updated email1"
+      assert contact_info.email2 == "some updated email2"
+      assert contact_info.phone1 == "some updated phone1"
+      assert contact_info.phone2 == "some updated phone2"
+    end
+
+    test "update_contact_info/2 with invalid data returns error changeset" do
+      contact_info = contact_info_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_contact_info(contact_info, @invalid_attrs)
+      assert contact_info == Accounts.get_contact_info!(contact_info.id)
+    end
+
+    test "delete_contact_info/1 deletes the contact_info" do
+      contact_info = contact_info_fixture()
+      assert {:ok, %ContactInfo{}} = Accounts.delete_contact_info(contact_info)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_contact_info!(contact_info.id) end
+    end
+
+    test "change_contact_info/1 returns a contact_info changeset" do
+      contact_info = contact_info_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_contact_info(contact_info)
+    end
+  end
 end

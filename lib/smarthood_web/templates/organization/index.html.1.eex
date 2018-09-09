@@ -1,5 +1,5 @@
 <div class="card-panel"> 
-<h4>Communities</h4>
+<h4>Organizations</h4>
 <br>
 <table class="bordered highlight">
   <thead>
@@ -29,5 +29,5 @@
 <br>
 </div>
 <%= if Enum.count(@conn.assigns.current_user.organizations) == 0 do %>
-<span><%= link "New Community", to: organization_path(@conn, :new), class: "btn" %></span>
+<span><%= link "New Organization", to: organization_path(@conn, :new), class: "btn" %></span>
 <% end %>

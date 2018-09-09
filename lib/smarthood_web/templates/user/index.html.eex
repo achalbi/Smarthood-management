@@ -1,4 +1,4 @@
-<h2>Users</h2>
+<h4>Users</h4>
 
 <table class=" bordered highlight ">
   <thead>
@@ -16,14 +16,14 @@
 
      <div class="col s12 m8 offset-m2 l6 offset-l3">
           <div class="row valign-wrapper">
-            <div class="col s2">
+            <div class="col s3">
               <%= unless is_nil(user.photo) do %>
                 <%= cl_image_tag(user.photo.public_id, class: "circle materialboxed responsive-img", transforms: %{width: 100, height: 100, sign_url: true, quality: 80, crop: :fill, gravity: :face}) %>
               <% end %> 
             </div>
-            <div class="col s10">
+            <div class="col s9">
               <span class="black-text">
-                <%= user.firstname %>  <%= user.lastname %>
+                <h6><%= user.firstname %>  <%= user.lastname %></h6>
               </span>
             </div>
           </div>
@@ -32,9 +32,9 @@
             
 
       <td class="text-right right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "waves-effect waves-light btn blue" %></span>
-        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "waves-effect waves-light btn orange" %></span>
-        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "waves-effect waves-light btn red" %></span>
+        <span><%= link "Show", to: user_path(@conn, :show, user), class: "waves-effect waves-light btn" %></span>
+        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "waves-effect waves-light btn" %></span>
+        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "waves-effect waves-light btn" %></span>
       </td>
     </tr>
 <% end %>

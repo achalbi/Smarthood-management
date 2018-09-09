@@ -1,0 +1,4 @@
+<h4>Edit Community</h4>
+
+<%= render "form.html", Map.put(assigns, :action, community_path(@conn, :update, @community)) %>
+

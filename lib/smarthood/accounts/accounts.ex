@@ -12,7 +12,7 @@ defmodule Smarthood.Accounts do
 
   alias Smarthood.Repo
 
-  alias Smarthood.Accounts.{User, Credential, Role, UserRole}
+  alias Smarthood.Accounts.{User, Credential, Role, UserRole, ContactInfo}
   alias Smarthood.Galleries
   alias Ueberauth.Auth
 
@@ -54,6 +54,7 @@ defmodule Smarthood.Accounts do
     User
     |> Repo.get!(id)
     |> Repo.preload(:credential)
+    |> Repo.preload(:contact_info)
     |> Repo.preload(:roles)
     |> Repo.preload(:photo)
   end
@@ -80,6 +81,7 @@ defmodule Smarthood.Accounts do
     result = %User{}
     |> User.changeset(attrs)
     |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.create_changeset/2)
+    |> Ecto.Changeset.cast_assoc(:contact_info)
     |> Ecto.Changeset.put_assoc(:roles, [role])
     |> Repo.insert()
 
@@ -106,6 +108,7 @@ defmodule Smarthood.Accounts do
     result = %User{}
     |> User.changeset(attrs)
     |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.strategy_changeset/2)
+    |> Ecto.Changeset.cast_assoc(:contact_info)
     |> Ecto.Changeset.put_assoc(:roles, [role])
     |> Repo.insert()
 
@@ -150,12 +153,15 @@ defmodule Smarthood.Accounts do
     case update_profile_photo(attrs) do
       {:ok, photo} ->
         user
+        |> Repo.preload(:contact_info)
         |> User.changeset(attrs)
+        |> Ecto.Changeset.cast_assoc(:contact_info)
         |> Ecto.Changeset.put_assoc(:photo, photo)
         |> Repo.update()
       :ok -> 
         user
         |> User.changeset(attrs)
+        |> Ecto.Changeset.cast_assoc(:contact_info)
         |> Repo.update()
     end
   end
@@ -507,5 +513,101 @@ defmodule Smarthood.Accounts do
 
   def get_dashboard(current_user) do
     current_user |> Repo.preload([:credential, organizations: :work_status_types ])
+  end
+
+  alias Smarthood.Accounts.ContactInfo
+
+  @doc """
+  Returns the list of contact_infos.
+
+  ## Examples
+
+      iex> list_contact_infos()
+      [%ContactInfo{}, ...]
+
+  """
+  def list_contact_infos do
+    Repo.all(ContactInfo)
+  end
+
+  @doc """
+  Gets a single contact_info.
+
+  Raises `Ecto.NoResultsError` if the Contact info does not exist.
+
+  ## Examples
+
+      iex> get_contact_info!(123)
+      %ContactInfo{}
+
+      iex> get_contact_info!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_contact_info!(id), do: Repo.get!(ContactInfo, id)
+
+  @doc """
+  Creates a contact_info.
+
+  ## Examples
+
+      iex> create_contact_info(%{field: value})
+      {:ok, %ContactInfo{}}
+
+      iex> create_contact_info(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_contact_info(attrs \\ %{}) do
+    %ContactInfo{}
+    |> ContactInfo.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a contact_info.
+
+  ## Examples
+
+      iex> update_contact_info(contact_info, %{field: new_value})
+      {:ok, %ContactInfo{}}
+
+      iex> update_contact_info(contact_info, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_contact_info(%ContactInfo{} = contact_info, attrs) do
+    contact_info
+    |> ContactInfo.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a ContactInfo.
+
+  ## Examples
+
+      iex> delete_contact_info(contact_info)
+      {:ok, %ContactInfo{}}
+
+      iex> delete_contact_info(contact_info)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_contact_info(%ContactInfo{} = contact_info) do
+    Repo.delete(contact_info)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking contact_info changes.
+
+  ## Examples
+
+      iex> change_contact_info(contact_info)
+      %Ecto.Changeset{source: %ContactInfo{}}
+
+  """
+  def change_contact_info(%ContactInfo{} = contact_info) do
+    ContactInfo.changeset(contact_info, %{})
   end
 end

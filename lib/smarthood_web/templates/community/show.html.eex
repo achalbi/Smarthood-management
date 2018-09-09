@@ -1,0 +1,13 @@
+<h4><%= @community.name %></h2>
+
+<ul>
+
+  <li>
+    <strong class="hide">Description:</strong>
+    <%= @community.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: community_path(@conn, :edit, @community), class: "waves-effect waves-light btn" %></span>
+<span><%= link "Back", to: community_path(@conn, :index), class: "waves-effect waves-light btn" %></span>
