@@ -1,0 +1,3 @@
+<h4>New Site</h4>
+
+<%= render "form.html", Map.put(assigns, :action, site_path(@conn, :create)) %>

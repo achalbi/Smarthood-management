@@ -1,5 +1,11 @@
 <h4>Listing Communities</h4>
 
+<%= unless is_nil(get_active_user_community(@conn.assigns.current_user.id)) do %>
+  <h5>Your active community: <%= get_active_user_community(@conn.assigns.current_user.id).name %> </h5>
+<% else %>
+  <h5 class="red-text pulse">Please join a community</h5>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>

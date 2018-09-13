@@ -1,0 +1,42 @@
+
+<span><%= link "Add Site", to: site_path(@conn, :new), class: "waves-effect waves-light btn" %></span>
+<br>
+<%= if length(@sites) > 0 do %>
+<h4>Listing Sites</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Site number</th>
+      <th>Measurement</th>
+      <th>Direction facing</th>
+      <th>Corner</th>
+      <th>Cross</th>
+      <th>Phase</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for site <- @sites do %>
+    <tr>
+      <td><%= site.site_number %></td>
+      <td><%= site.measurement %></td>
+      <td><%= site.direction_facing %></td>
+      <td><%= site.corner %></td>
+      <td><%= site.cross %></td>
+      <td><%= site.phase %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: site_path(@conn, :show, site), class: "waves-effect waves-light btn" %></span>
+        <span><%= link "Edit", to: site_path(@conn, :edit, site), class: "waves-effect waves-light btn" %></span>
+        <span><%= link "Delete", to: site_path(@conn, :delete, site), method: :delete, data: [confirm: "Are you sure?"], class: "waves-effect waves-light btn" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<br>
+<% else %>
+<h4 class="center">Add your sites</h4>
+<% end %>

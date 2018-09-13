@@ -1,0 +1,54 @@
+<h4>Show Site</h4>
+
+<div class="row">
+    <div class="input-field col m2 s12">
+      <%= tag :input, type: "text", value: @site.site_number, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, :site_number, class: "active" %>
+    </div>
+
+    <div class="input-field col m3 s12">
+      <%= tag :input, type: "text", value: @site.measurement, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Measurement (in W x L)" , class: "active"  %>
+    </div>
+
+    <div class="input-field col m4 s12">
+      <%= tag :input, type: "text", value: @site.total_area, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Total Area (in sq.ft.)", class: "active" %>
+    </div>
+
+    <div class="input-field  col m3 s12">
+      <%= tag :input, type: "text", value: @site.direction_facing, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Direction Facing", class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col m2 s12">
+      <%= tag :input, type: "text", value: @site.cross, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Cross", class: "active" %>
+    </div>
+
+    <div class="input-field col m2 s12">
+      <%= tag :input, type: "text", value: @site.phase, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Phase", class: "active" %>
+    </div>
+    
+    <div class="input-field col m3 s12">
+      <%= tag :input, type: "text", value: (if (@site.corner), do: "Yes", else: "No") , class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Corner", class: "active" %>   
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="input-field col m12 s12">
+      <%= tag :input, type: "text", value: @site.info, class: "black-text", readonly: "readonly" %>
+      <%= content_tag :label, "Other Information", class: "active" %>  
+    </div>
+  </div>
+
+
+
+
+<span><%= link "Edit", to: site_path(@conn, :edit, @site), class: "waves-effect waves-light btn" %></span>
+<span><%= link "Back", to: site_path(@conn, :index), class: "waves-effect waves-light btn"  %></span>

@@ -5,6 +5,7 @@ defmodule Smarthood.Accounts.User do
   alias Smarthood.Organizations.{Team, UserTeam, Organization, UserOrganization}
   alias Smarthood.Galleries.Photo
   alias Smarthood.StatusTrack.WorkStatus
+  alias Smarthood.Communities.{Community, CommunityUser}
 
   schema "users" do
     field :firstname, :string
@@ -16,6 +17,7 @@ defmodule Smarthood.Accounts.User do
     has_one :contact_info, ContactInfo
     many_to_many :roles, Role, join_through: UserRole
     many_to_many :organizations, Organization, join_through: UserOrganization  
+    many_to_many :communities, Community, join_through: CommunityUser  
     many_to_many :teams, Team, join_through: UserTeam 
     has_many :work_statuses, WorkStatus
 

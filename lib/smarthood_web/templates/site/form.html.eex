@@ -1,0 +1,79 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p><%= error_string_from_changeset(@changeset) %></p>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="input-field col m2 s12">
+      <%= label f, :site_number %>
+      <%= text_input f, :site_number %>
+      <%= error_tag f, :site_number %>
+    </div>
+
+    <div class="input-field col m3 s12">
+      <%= label f, :measurement, "Measurement (in W x L)" %>
+      <%= text_input f, :measurement %>
+      <%= error_tag f, :measurement %>
+    </div>
+
+    <div class="input-field col m4 s12">
+      <%= label f, :total_area, "Total Area (in sq.ft.)" %>
+      <%= text_input f, :total_area , class: "autocomplete" %>
+      <%= error_tag f, :total_area %>
+    </div>
+
+    <div class="form-control col m3 s12">
+      <%= label f, :direction_facing %>
+      <%= select(f, :direction_facing, ["Choose your option": "0", "North": "north", "East": "east", "South": "south", "West": "west"]) %>
+      <%= error_tag f, :direction_facing %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col m2 s12">
+      <%= label f, :cross, "Cross" %>
+      <%= text_input f, :cross %>
+      <%= error_tag f, :cross %>
+    </div>
+
+    <div class="input-field col m2 s12">
+      <%= label f, :phase, "Phase" %>
+      <%= text_input f, :phase %>
+      <%= error_tag f, :phase %>
+    </div>
+    
+    <div class="col m8 s12" style="margin-top: 25px;">
+        <%= checkbox f, :corner, class: "filled-in center-align", id: "site_corner" %>
+        <%= label f, :corner %>
+        <%= error_tag f, :corner %>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="input-field col m12 s12">
+      <%= label f, :info, "Other Information" %>
+      <%= textarea f, :info, class: "materialize-textarea" %>
+      <%= error_tag f, :info %>
+    </div>
+  </div>
+    <%= hidden_input f, :community_id, value: get_active_user_community(@conn.assigns.current_user.id).id %>
+    <%= hidden_input f, :user_id, value: @conn.assigns.current_user.id %>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn waves-effect waves-light" %>
+    <span><%= link "Back", to: site_path(@conn, :index), class: "waves-effect waves-light btn" %></span>
+  </div>
+<% end %>
+
+<script>
+
+  $(document).ready(function() {
+    $('select option:nth(0)').prop("disabled","disabled");
+    $('select').material_select();
+  });
+    
+
+</script>

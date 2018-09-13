@@ -54,6 +54,7 @@ defmodule Smarthood.Accounts do
     User
     |> Repo.get!(id)
     |> Repo.preload(:credential)
+    |> Repo.preload(:communities)
     |> Repo.preload(:contact_info)
     |> Repo.preload(:roles)
     |> Repo.preload(:photo)

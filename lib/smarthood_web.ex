@@ -45,7 +45,7 @@ defmodule SmarthoodWeb do
       
       import Smarthood.Accounts, only: [current_user: 1, logged_in?: 1]
       import Smarthood.Organizations, only: [is_current_user_moderator?: 1]
-      import Smarthood.Communities, only: [is_community_user?: 2]
+      import Smarthood.Communities, only: [is_community_user?: 2, get_active_user_community: 1]
     end
   end
 
