@@ -108,9 +108,20 @@ defmodule Smarthood.Communities do
 
   def add_users_to_community(community_id, user_id, is_moderator) do
     attrs = %{"community_id" => community_id, "user_id" => user_id, "is_moderator" => is_moderator, "active" => true}
-    %CommunityUser{}
-    |> CommunityUser.changeset(attrs)
-    |> Repo.insert() 
+    if is_community_user?(community_id,user_id) do
+      attrs = %{"is_moderator" => is_moderator, "active" => true}
+      CommunityUser
+      |> Repo.get_by(community_id: community_id, user_id: user_id)
+      |> CommunityUser.changeset(attrs)
+      |> Repo.update()
+    else
+      from(cu in CommunityUser, where: cu.user_id == ^user_id)
+      |> Repo.update_all(set: [active: false])
+      
+      %CommunityUser{}
+      |> CommunityUser.changeset(attrs)
+      |> Repo.insert()
+    end 
   end
 
   def remove_users_from_community(community_id, user_id) do
