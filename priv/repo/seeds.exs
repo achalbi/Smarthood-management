@@ -20,6 +20,11 @@ Smarthood.Repo.insert!(%Smarthood.Accounts.Role{
     name: "Regular user"
 })
 
+Smarthood.Repo.insert!(%Smarthood.Accounts.Role{
+    key: "data_entry",
+    name: "Data Entry"
+})
+
 # Smarthood.Repo.insert!(%Smarthood.StatusTrack.WorkStatusType{
 #     name: "Daily",
 #     description: "This option is used to track Daily Work status",
