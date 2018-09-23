@@ -76,7 +76,11 @@ defmodule SmarthoodWeb.Router do
         get("/unjoin", UserController, :remove_user_from_community, as: :unjoin)
       end
     end
-    resources "/sites", SiteController
+    resources "/sites", SiteController do
+      resources "/houses", HouseController
+    end
+    
+    resources "/houses", HouseController
 
     resources "/to_dos", ToDoController, only: [], as: :to_do do
       resources("/to_do_users", ToDoUserController, as: :users)

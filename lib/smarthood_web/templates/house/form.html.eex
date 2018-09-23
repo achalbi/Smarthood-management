@@ -1,0 +1,87 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="card red lighten-5" role="alert">
+      <div class="card-content red-text">
+        <p> Please check the errors below.</p>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="row">
+    <div class="input-field col m4 s12">
+      <%= label f, :house_number %>
+      <%= text_input f, :house_number %>
+      <%= error_tag f, :house_number %>
+    </div>
+
+    <div class=" col m4 s12">
+      <%= label f, :house_type %>
+      <%= select(f, :house_type, ["Choose your option": "0", "Individual": "individual", "Apartment/Many houses on Site": "apartment"]) %>
+      <%= error_tag f, :house_type %>
+    </div>
+
+    <div class="col m4 s12">
+      <%= label f, :main_door_facing %>
+      <%= select(f, :main_door_facing, ["Choose your option": "0", "North": "north", "East": "east", "South": "south", "West": "west"]) %>
+      <%= error_tag f, :main_door_facing %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col m4 s12">
+      <%= label f, :members_count %>
+      <%= number_input f, :members_count, class: "" %>
+      <%= error_tag f, :members_count %>
+    </div>
+
+    <div class="input-field col m4 s12">
+      <%= label f, :kitchen, "Kitchen count" %>
+      <%= text_input f, :kitchen, class: "" %>
+      <%= error_tag f, :kitchen %>
+    </div>
+
+    <div class=" col m4 s12">
+      <%= label f, :construction_status %>
+      <%= select(f, :construction_status, ["Choose your option": "0", "Under Contruction": "incomplete", "Construction Completed": "complete"]) %>
+      <%= error_tag f, :construction_status %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col m4 s12">
+      <label class="active">Contructed on:</label>
+      <%= text_input f, :constructed_on_date, class: "datepicker black-text" %>
+      <%= error_tag f, :constructed_on_date %>
+    </div>
+  </div>
+
+<%= hidden_input f, :site_id %>
+<%= hidden_input f, :user_id %>
+
+  <div class="row">
+    <span><%= submit "Submit", class: "btn waves-light waves-effect" %></span>
+    <span><%= link "Back", to: house_path(@conn, :index), class: "waves-light waves-effect btn" %></span>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $('select option:nth(0)').prop("disabled","disabled");
+    $('select').material_select();  
+
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 35, // Creates a dropdown of 15 years to control year,
+      today: 'Today',
+      clear: 'Clear',
+      closeOnClear: false,
+      close: 'Ok',
+      formatSubmit: 'yyyy-mm-dd',
+      hiddenName: true,
+      closeOnSelect: true // Close upon selecting a date,
+    });
+
+  });
+  
+</script>

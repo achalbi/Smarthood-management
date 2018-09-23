@@ -1,0 +1,43 @@
+<h2>Show House</h2>
+
+<ul>
+
+  <li>
+    <strong>House number:</strong>
+    <%= @house.house_number %>
+  </li>
+
+  <li>
+    <strong>House type:</strong>
+    <%= @house.house_type %>
+  </li>
+
+  <li>
+    <strong>Main door facing:</strong>
+    <%= @house.main_door_facing %>
+  </li>
+
+  <li>
+    <strong>Members count:</strong>
+    <%= @house.members_count %>
+  </li>
+
+  <li>
+    <strong>Kitchen:</strong>
+    <%= @house.kitchen %>
+  </li>
+
+  <li>
+    <strong>Construction status:</strong>
+    <%= @house.construction_status %>
+  </li>
+
+  <li>
+    <strong>Constructed on date:</strong>
+    <%= @house.constructed_on_date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: house_path(@conn, :edit, @house) %></span>
+<span><%= link "Back", to: house_path(@conn, :index) %></span>

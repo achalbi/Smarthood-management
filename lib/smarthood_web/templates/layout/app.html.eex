@@ -106,6 +106,7 @@
     <li><a class="waves-effect waves-teal" href="/communities"><i class="material-icons">business</i>Communities</a></li>
     <li><a class="waves-effect waves-teal" href="/users"><i class="material-icons">people</i>Users</a></li>
     <li><a class="waves-effect waves-teal" href="/sites"><i class="material-icons">settings_overscan</i>Sites</a></li>
+    <li><a class="waves-effect waves-teal" href="/houses"><i class="material-icons">home</i>Houses</a></li>
       
     <%= if length(@conn.assigns.current_user.organizations) > 0 do %>
     <li class="no-padding hide">

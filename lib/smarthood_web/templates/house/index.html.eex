@@ -1,0 +1,41 @@
+<h4>Listing Houses</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>House number</th>
+      <th>House type</th>
+      <th>Main door facing</th>
+      <th>Members count</th>
+      <th>Kitchen</th>
+      <th>Construction status</th>
+      <th>Constructed on date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for house <- @houses do %>
+    <tr>
+      <td><%= house.house_number %></td>
+      <td><%= house.house_type %></td>
+      <td><%= house.main_door_facing %></td>
+      <td><%= house.members_count %></td>
+      <td><%= house.kitchen %></td>
+      <td><%= house.construction_status %></td>
+      <td><%= house.constructed_on_date %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: house_path(@conn, :show, house), class: "btn waves-effect waves-light" %></span>
+        <span><%= link "Edit", to: house_path(@conn, :edit, house), class: "btn waves-effect waves-light" %></span>
+        <span><%= link "Delete", to: house_path(@conn, :delete, house), method: :delete, data: [confirm: "Are you sure?"], class: "btn waves-effect waves-light" %></span>
+      </td>
+    </tr>
+<% end %>
+<%= if length(@houses) == 0 do %>
+  <tr><td colspan="8"><center>No house added</center></td></tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New House", to: house_path(@conn, :new), class: "waves-effect waves-light btn" %></span>

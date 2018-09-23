@@ -136,4 +136,76 @@ defmodule Smarthood.CommunitiesTest do
       assert %Ecto.Changeset{} = Communities.change_site(site)
     end
   end
+
+  describe "houses" do
+    alias Smarthood.Communities.House
+
+    @valid_attrs %{constructed_on_date: "2010-04-17 14:00:00.000000Z", construction_status: "some construction_status", house_number: "some house_number", house_type: "some house_type", kitchen: "some kitchen", main_door_facing: "some main_door_facing", members_count: 42}
+    @update_attrs %{constructed_on_date: "2011-05-18 15:01:01.000000Z", construction_status: "some updated construction_status", house_number: "some updated house_number", house_type: "some updated house_type", kitchen: "some updated kitchen", main_door_facing: "some updated main_door_facing", members_count: 43}
+    @invalid_attrs %{constructed_on_date: nil, construction_status: nil, house_number: nil, house_type: nil, kitchen: nil, main_door_facing: nil, members_count: nil}
+
+    def house_fixture(attrs \\ %{}) do
+      {:ok, house} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Communities.create_house()
+
+      house
+    end
+
+    test "list_houses/0 returns all houses" do
+      house = house_fixture()
+      assert Communities.list_houses() == [house]
+    end
+
+    test "get_house!/1 returns the house with given id" do
+      house = house_fixture()
+      assert Communities.get_house!(house.id) == house
+    end
+
+    test "create_house/1 with valid data creates a house" do
+      assert {:ok, %House{} = house} = Communities.create_house(@valid_attrs)
+      assert house.constructed_on_date == DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
+      assert house.construction_status == "some construction_status"
+      assert house.house_number == "some house_number"
+      assert house.house_type == "some house_type"
+      assert house.kitchen == "some kitchen"
+      assert house.main_door_facing == "some main_door_facing"
+      assert house.members_count == 42
+    end
+
+    test "create_house/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Communities.create_house(@invalid_attrs)
+    end
+
+    test "update_house/2 with valid data updates the house" do
+      house = house_fixture()
+      assert {:ok, house} = Communities.update_house(house, @update_attrs)
+      assert %House{} = house
+      assert house.constructed_on_date == DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
+      assert house.construction_status == "some updated construction_status"
+      assert house.house_number == "some updated house_number"
+      assert house.house_type == "some updated house_type"
+      assert house.kitchen == "some updated kitchen"
+      assert house.main_door_facing == "some updated main_door_facing"
+      assert house.members_count == 43
+    end
+
+    test "update_house/2 with invalid data returns error changeset" do
+      house = house_fixture()
+      assert {:error, %Ecto.Changeset{}} = Communities.update_house(house, @invalid_attrs)
+      assert house == Communities.get_house!(house.id)
+    end
+
+    test "delete_house/1 deletes the house" do
+      house = house_fixture()
+      assert {:ok, %House{}} = Communities.delete_house(house)
+      assert_raise Ecto.NoResultsError, fn -> Communities.get_house!(house.id) end
+    end
+
+    test "change_house/1 returns a house changeset" do
+      house = house_fixture()
+      assert %Ecto.Changeset{} = Communities.change_house(house)
+    end
+  end
 end

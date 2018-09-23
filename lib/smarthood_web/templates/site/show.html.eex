@@ -52,3 +52,4 @@
 
 <span><%= link "Edit", to: site_path(@conn, :edit, @site), class: "waves-effect waves-light btn" %></span>
 <span><%= link "Back", to: site_path(@conn, :index), class: "waves-effect waves-light btn"  %></span>
+<span class="right"><%= link "Add House", to: site_house_path(@conn, :new, @site), class: "waves-effect waves-light btn"  %></span>
