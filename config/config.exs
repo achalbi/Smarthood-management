@@ -43,7 +43,7 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth ,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
   redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
-  
+
 # Guardian configuration
 config :smarthood, Smarthood.Guardian,
   issuer: "smarthood",
@@ -65,6 +65,9 @@ config :elixir_google_spreadsheets, :client,
   interval: 3000
 
 config :sphinx, :repo, Smarthood.Repo
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

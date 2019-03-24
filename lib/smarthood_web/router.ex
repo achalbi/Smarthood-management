@@ -69,9 +69,9 @@ defmodule SmarthoodWeb.Router do
       resources("/spreadsheets", SpreadsheetController)
       resources("/to_dos", ToDoController)
     end
-    
+
     resources "/communities", CommunityController do
-      resources("/users", UserController, only: [:join]) do
+      resources("/users", UserController) do
         get("/join", UserController, :add_user_to_community, as: :join)
         get("/unjoin", UserController, :remove_user_from_community, as: :unjoin)
       end
@@ -79,7 +79,7 @@ defmodule SmarthoodWeb.Router do
     resources "/sites", SiteController do
       resources "/houses", HouseController
     end
-    
+
     resources "/houses", HouseController
 
     resources "/to_dos", ToDoController, only: [], as: :to_do do

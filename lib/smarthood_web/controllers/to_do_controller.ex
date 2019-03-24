@@ -123,6 +123,8 @@ defmodule SmarthoodWeb.ToDoController do
     teams = Organizations.get_teams_by_user_and_org(conn.assigns.current_user.id, org.id)
 
     if Enum.count(teams) > 0 do
+      team = nil
+      date = nil
       case params do
         %{"team_id" => team_id, "on_date" => on_date} ->
           date = Timex.parse!(on_date, "%Y-%m-%d", :strftime)

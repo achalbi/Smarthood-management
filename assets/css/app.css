@@ -1,0 +1,219 @@
+/* This file is for your main application css. */
+html {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.side-nav .user-view .name,
+.side-nav .userView .name {
+  margin-top: 8px;
+}
+
+.user-avatar-sm {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #769fd1;
+}
+
+/* Phoenix flash messages */
+.alert:empty {
+  display: none;
+}
+
+.clear,
+.clear-10,
+.clear-15 {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+  /* Précaution pour IE 7 */
+}
+
+.clear-10 {
+  margin-bottom: 10px;
+}
+
+.clear-15 {
+  margin-bottom: 15px;
+}
+
+.html-newline {
+  white-space: pre-line;
+}
+
+.help-block {
+  color: red;
+}
+
+.btn {
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.btn,
+.btn:visited,
+.btn:link {
+  background-color: #009688;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #26a69a;
+}
+
+form> :focus {
+  border-color: #009688;
+  box-shadow: 0 1px 0 0 #009688;
+}
+
+input:not([type]):hover,
+input[type='text']:not(.browser-default):hover,
+input[type='password']:not(.browser-default):hover,
+input[type='email']:not(.browser-default):hover,
+input[type='url']:not(.browser-default):hover,
+input[type='time']:not(.browser-default):hover,
+input[type='date']:not(.browser-default):hover,
+input[type='datetime']:not(.browser-default):hover,
+input[type='datetime-local']:not(.browser-default):hover,
+input[type='tel']:not(.browser-default):hover,
+input[type='number']:not(.browser-default):hover,
+input[type='search']:not(.browser-default):hover,
+textarea.materialize-textarea:hover,
+input:not([type]):focus:not([read-only]),
+input[type='text']:not(.browser-default):focus:not([read-only]),
+input[type='password']:not(.browser-default):focus:not([read-only]),
+input[type='email']:not(.browser-default):focus:not([read-only]),
+input[type='url']:not(.browser-default):focus:not([read-only]),
+input[type='time']:not(.browser-default):focus:not([read-only]),
+input[type='date']:not(.browser-default):focus:not([read-only]),
+input[type='datetime']:not(.browser-default):focus:not([read-only]),
+input[type='datetime-local']:not(.browser-default):focus:not([read-only]),
+input[type='tel']:not(.browser-default):focus:not([read-only]),
+input[type='number']:not(.browser-default):focus:not([read-only]),
+input[type='search']:not(.browser-default):focus:not([read-only]),
+textarea.materialize-textarea:focus:not([read-only]) {
+  border-color: #009688;
+  box-shadow: 0 1px 0 0 #009688;
+}
+
+.dropdown-content li>a,
+.dropdown-content li>span {
+  color: #009688;
+}
+
+[type='radio']:checked+label:after,
+[type='radio'].with-gap:checked+label:after {
+  background-color: #009688;
+}
+
+[type='radio']:checked+label:after,
+[type='radio'].with-gap:checked+label:before,
+[type='radio'].with-gap:checked+label:after {
+  border: 2px solid #009688;
+}
+
+.picker__date-display {
+  background-color: #009688;
+}
+
+.picker__close,
+.picker__today {
+  color: #009688;
+}
+
+.picker__day--today {
+  color: #009688 !important;
+}
+
+.picker__nav--prev:hover,
+.picker__nav--next:hover {
+  color: white !important;
+  background-color: #26a69a !important;
+}
+
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker__day--highlighted {
+  /*.picker--focused,*/
+  color: white !important;
+  background-color: #009688 !important;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active,
+.tabs .tab a {
+  background-color: transparent;
+  color: #009688;
+}
+
+.tabs .indicator {
+  background-color: #009688;
+}
+
+html h4 {
+  color: #009688;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-content {
+  padding: 14px 20px !important;
+}
+
+.card-title {
+  font-size: 22px !important;
+}
+
+.m-0 {
+  margin: 0px !important;
+}
+
+.m-t-0 {
+  margin-top: 0px !important;
+}
+
+.m-b-0 {
+  margin-bottom: 0px !important;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.m-lr-10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.p-0 {
+  padding: 0px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.p-20 {
+  padding: 10px;
+}
+
+.m-b-10 {
+  margin-bottom: 10px !important;
+}
+
+.text-cyan-shadow {
+  text-shadow: #313130 3px 0 10px;
+}
+
+.fab-relative {
+  transform: scaleY(0.4) scaleX(0.4) translateY(0px) translateX(40px);
+  opacity: 0;
+}
+
+.collection-title {
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+}

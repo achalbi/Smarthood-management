@@ -33,9 +33,11 @@ defmodule Smarthood.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.0"},
+      {:phoenix, "~> 1.4.2"},
       {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
+      {:ecto_sql, "~> 3.0"},
+      {:jason, "~> 1.0"},
+      {:phoenix_ecto, "~> 4.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10.5"},
       {:phoenix_live_reload, "~> 1.1"},
@@ -43,17 +45,19 @@ defmodule Smarthood.Mixfile do
       {:ueberauth, "~> 0.4"},
       {:ueberauth_identity, "~> 0.2"},
       {:ueberauth_google, "~> 0.7"},
-      {:cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0"},
+      {:plug, "~> 1.7"},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:cloudex, "~> 1.0.0"},
-      {:arc, "~> 0.8.0"},
-      {:arc_ecto, "~> 0.7.0"},
+      {:cloudex, "~> 1.2.1"},
+      {:arc, "~> 0.11.0"},
+      {:arc_ecto, "~> 0.11.1"},
       {:elixir_google_spreadsheets, "~> 0.1.9"},
-      {:ecto_gss, "~> 0.1"},
+      {:ecto_gss, "~> 0.2"},
       {:json_web_token, git: "https://github.com/starbuildr/json_web_token_ex.git", override: true},
-      {:timex, "~> 3.1"},
+      {:timex, "~> 3.5.0"},
+      {:poison, "~> 3.1.0", override: true},
       {:sphinx, "~> 0.1.0"}
     ]
   end
@@ -68,7 +72,7 @@ defmodule Smarthood.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end
