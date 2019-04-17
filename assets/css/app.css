@@ -217,3 +217,8 @@ html h4 {
   font-size: 1.3rem;
   line-height: 2.2rem;
 }
+
+@import "./materialize.css";
+@import "./style.css";
+@import "./vanillaCalendar.css";
+@import "./jquery.auto-complete.css";

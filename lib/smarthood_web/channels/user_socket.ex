@@ -8,9 +8,9 @@ defmodule SmarthoodWeb.UserSocket do
   # transport :websocket, Phoenix.Transports.WebSocket,
   #   timeout: 45_000
 
-#  socket "/socket", MyAppWeb.UserSocket,
-#    websocket: true # or list of options
-  #  longpoll: [check_origin: ...]
+#  socket "/socket", SmarthoodWeb.UserSocket,
+#    websocket: true, # or list of options
+#    longpoll: [check_origin: ...]
 
   # transport :longpoll, Phoenix.Transports.LongPoll
 

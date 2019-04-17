@@ -21,4 +21,8 @@ import "phoenix_html";
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-import autocomplete from "./jquery.auto-complete.min";
+import {vanillaCalendar} from '../vendor/vanillaCalendar/vanillaCalendar';
+import {autocomplete} from "./jquery.auto-complete.min";
+import {init} from "./init";
+
+vanillaCalendar.init();

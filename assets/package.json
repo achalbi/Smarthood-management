@@ -2,8 +2,8 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "deploy": "brunch build --production",
-    "watch": "webpack --mode development --watch"
+    "deploy": "webpack --mode production",
+    "watch": "webpack --mode development --watch-stdin"
   },
   "dependencies": {
     "font-awesome": "^4.7.0",

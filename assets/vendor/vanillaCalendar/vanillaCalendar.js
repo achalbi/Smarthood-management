@@ -124,3 +124,6 @@ var vanillaCalendar = {
     }
   }
 };
+
+export { vanillaCalendar };
+
